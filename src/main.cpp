@@ -1,45 +1,7 @@
 #include "main.h"
-#include <fstream>
 #include "pros/apix.h"
 
-#define numofimages 1
-
-void draw_images(void*){
-	while (true){
-		for (int i = 0; i < numofimages; i++){
-			std::vector<char> file_contents(0);
-			char ch;
-			//fstream fin(argv[1], fstream::in);
-			std::fstream fin("/usd/image.png", std::fstream::in);
-			while (fin >> std::noskipws >> ch) {
-				//cout << ch; // Or whatever
-				file_contents.push_back(ch);
-				printf("%c", ch);
-				delay(10);
-			}
-		}
-
-		
-		delay(20);
-	}
-}
-
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
+LV_IMG_DECLARE(image);
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -47,11 +9,9 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-
-	Task my_task(draw_images, (void*)"parameter(s) here", "My Task Name");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+    lv_obj_t *img = lv_img_create(lv_scr_act(), NULL);
+    lv_img_set_src(img, &image);
+    lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
 /**
@@ -100,15 +60,15 @@ void autonomous() {}
  */
 
 void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
+    pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-	while (true) {
-		//pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		//                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		//                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
+    while (true) {
+        //pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
+        //                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
+        //                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
 
-		//Brain.Screen.drawImageFromFile("field.png", 0, 0);
+        //Brain.Screen.drawImageFromFile("field.png", 0, 0);
 
-		pros::delay(20);
-	}
+        pros::delay(20);
+    }
 }
