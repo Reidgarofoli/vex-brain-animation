@@ -1,7 +1,64 @@
 #include "main.h"
 #include "pros/apix.h"
 
-LV_IMG_DECLARE(image);
+LV_IMG_DECLARE(a);
+LV_IMG_DECLARE(b);
+LV_IMG_DECLARE(l); // gets mad about c
+LV_IMG_DECLARE(d);
+LV_IMG_DECLARE(e);
+LV_IMG_DECLARE(f);
+LV_IMG_DECLARE(g);
+LV_IMG_DECLARE(h);
+
+lv_obj_t *images[8];
+
+
+void updateScreen(void*){
+    int i = 0;
+    while (true) {
+        i = 0;
+        lv_img_set_src(images[i], &a);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        delay(142);
+
+        i++;
+        lv_img_set_src(images[i], &b);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+        delay(142);
+
+        i++;
+        lv_img_set_src(images[i], &l);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        i++;
+        lv_img_set_src(images[i], &d);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        delay(142);
+        i++;
+        lv_img_set_src(images[i], &e);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        delay(142);
+        i++;
+        lv_img_set_src(images[i], &f);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        delay(142);
+        i++;
+        lv_img_set_src(images[i], &g);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+
+        delay(142);
+        i++;
+        lv_img_set_src(images[i], &h);
+        lv_obj_align(images[i], NULL, LV_ALIGN_CENTER, 0, 0);
+        
+        delay(142);
+    }
+}
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -9,9 +66,11 @@ LV_IMG_DECLARE(image);
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-    lv_obj_t *img = lv_img_create(lv_scr_act(), NULL);
-    lv_img_set_src(img, &image);
-    lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
+    for (int i = 0; i < 8; i++){
+        images[i] = lv_img_create(lv_scr_act(), NULL);
+    }
+
+    Task my_task(updateScreen, (void*)"parameter(s) here", "My Task Name");
 }
 
 /**
