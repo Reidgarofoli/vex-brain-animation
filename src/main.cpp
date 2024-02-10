@@ -10,7 +10,7 @@ void draw_images(void*){
 			std::vector<char> file_contents(0);
 			char ch;
 			//fstream fin(argv[1], fstream::in);
-			std::fstream fin("image.png", std::fstream::in);
+			std::fstream fin("/usd/image.png", std::fstream::in);
 			while (fin >> std::noskipws >> ch) {
 				//cout << ch; // Or whatever
 				file_contents.push_back(ch);
@@ -18,6 +18,8 @@ void draw_images(void*){
 				delay(10);
 			}
 		}
+
+		
 		delay(20);
 	}
 }
