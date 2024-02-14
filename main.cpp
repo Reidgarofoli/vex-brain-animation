@@ -43,7 +43,6 @@ int main(int argc, char const *argv[]){
                     i = 0;
                 }
                 data = stbi_load(images[i].c_str(), &width, &height, &n, 0);
-                // Maintain designated frequency of 5 Hz (200 ms per frame)
                 o = std::chrono::system_clock::now();
                 std::chrono::duration<double, std::milli> work_time = o - p;
 
@@ -79,7 +78,6 @@ int main(int argc, char const *argv[]){
                     i = 0;
                 }
                 data = stbi_load(images[i].c_str(), &width, &height, &n, 0);
-                // Maintain designated frequency of 5 Hz (200 ms per frame)
                 o = std::chrono::system_clock::now();
                 std::chrono::duration<double, std::milli> work_time = o - p;
 
@@ -114,7 +112,6 @@ int main(int argc, char const *argv[]){
                     i = 0;
                 }
                 data = stbi_load(images[i].c_str(), &width, &height, &n, 0);
-                // Maintain designated frequency of 5 Hz (200 ms per frame)
                 o = std::chrono::system_clock::now();
                 std::chrono::duration<double, std::milli> work_time = o - p;
 
@@ -150,7 +147,6 @@ int main(int argc, char const *argv[]){
                     i = 0;
                 }
                 data = stbi_load(images[i].c_str(), &width, &height, &n, 0);
-                // Maintain designated frequency of 5 Hz (200 ms per frame)
                 o = std::chrono::system_clock::now();
                 std::chrono::duration<double, std::milli> work_time = o - p;
 
