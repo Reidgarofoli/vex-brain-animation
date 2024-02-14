@@ -164,7 +164,6 @@ int main(int argc, char const *argv[]){
                 p = std::chrono::system_clock::now();
                 std::chrono::duration<double, std::milli> sleep_time = p - o;
 
-
                 BeginDrawing();
                 ClearBackground((Color){0, 0, 0, 255});
                 for (int y = 0; y < height; y++){
