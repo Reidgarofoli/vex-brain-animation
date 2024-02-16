@@ -12,8 +12,8 @@ struct button {
     uint16_t y;
     uint16_t width;
     uint16_t height;
-    char[16] identifier;
-}
+    char identifier[16];
+};
 
 button buttons[2] = {
     (button){0, 0, 60, 120, "button1"},
@@ -237,7 +237,7 @@ void changePixel() {
     pros::screen_touch_status_s_t status = pros::screen::touch_status();
     for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
         if (status.x > buttons[i].x && status.y > buttons[i].y && status.x < buttons[i].x + buttons[i].width && status.y < buttons[i].y + buttons[i].height){
-            printf("button pressed");
+            printf("button '%s' pressed", buttons[i].identifier);
         }
     }
 }
