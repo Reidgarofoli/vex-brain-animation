@@ -12,12 +12,13 @@ struct button {
     uint16_t y;
     uint16_t width;
     uint16_t height;
-    char identifier[16];
+    char identifier;
 };
 
+int numofbuttons = 2;
 button buttons[2] = {
-    (button){0, 0, 60, 120, "button1"},
-    (button){0, 120, 60, 120, "button2"},
+    (button){0, 0, 60, 120, 'u'},
+    (button){0, 120, 60, 120, 'd'},
 };
 
 void updateScreen(void*){
@@ -63,11 +64,13 @@ void updateScreen(void*){
                 stbi_image_free(data);
                 i++;
 
-                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                for (int i = 0; i < numofbuttons; i++) {
+                    printf("%d\n", i);
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
                     pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
-                    if (buttons[i].identifier == "upArrow"){
+                    pros::screen::set_pen(pros::c::COLOR_DARK_GRAY);
+                    if (buttons[i].identifier == 'u'){
                         pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
@@ -103,11 +106,13 @@ void updateScreen(void*){
                 stbi_image_free(data);
                 i++;
 
-                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                for (int i = 0; i < numofbuttons; i++) {
+                    printf("%d\n", i);
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
                     pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
-                    if (buttons[i].identifier == "upArrow"){
+                    pros::screen::set_pen(pros::c::COLOR_DARK_GRAY);
+                    if (buttons[i].identifier == 'u'){
                         pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
@@ -145,10 +150,12 @@ void updateScreen(void*){
                 i++;
 
                 for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                    printf("%d", i);
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
                     pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
-                    if (buttons[i].identifier == "upArrow"){
+                    pros::screen::set_pen(pros::c::COLOR_DARK_GRAY);
+                    if (buttons[i].identifier == 'u'){
                         pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
@@ -186,15 +193,26 @@ void updateScreen(void*){
                 stbi_image_free(data);
                 i++;
 
-                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
-                    //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                for (int i = 0; i < numofbuttons; i++) {
+                    //pros::screen::set_pen(0xff0000);
+                    //pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
                     pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
-                    if (buttons[i].identifier == "upArrow"){
-                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
+
+
+                    pros::screen::set_pen(pros::c::COLOR_BLACK);
+                    if (buttons[i].identifier == 'u'){
+                        printf("x:%d  y:%d\n", buttons[i].x, buttons[i].y);
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x-5, 50 + buttons[i].y, buttons[i].width - 40 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
                         pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                    } else if (buttons[i].identifier == 'd'){
+                        printf("x:%d  y:%d\n", buttons[i].x, buttons[i].y);
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x-5, 40 + buttons[i].y, buttons[i].width - 40 + buttons[i].x, buttons[i].height - 60 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 60 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 60 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 60 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].height - buttons[i].width / 2 + buttons[i].y - 10);
+                        pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 60 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].height - buttons[i].width / 2 + buttons[i].y - 10);
                     }
                 }
 
@@ -261,17 +279,18 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void changePixel() {
+void getTouched(){
     pros::screen_touch_status_s_t status = pros::screen::touch_status();
-    for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+    for (int i = 0; i < numofbuttons; i++) {
         if (status.x > buttons[i].x && status.y > buttons[i].y && status.x < buttons[i].x + buttons[i].width && status.y < buttons[i].y + buttons[i].height){
-            printf("button '%s' pressed", buttons[i].identifier);
+            printf("button '%c' pressed\n", buttons[i].identifier);
         }
     }
 }
 
+
 void opcontrol() {
-    pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
+    pros::screen::touch_callback(getTouched, TOUCH_PRESSED);
     while(1) {
         pros::delay(20);
     }
