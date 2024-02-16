@@ -53,10 +53,7 @@ void updateScreen(void*){
                 for (int y = 0; y < height; y++){
                     for (int x = 0; x < width; x++){
                         r = data[((x) + (y*width))];
-                        color = 0;
-                        color |= r << 16;
-                        color |= r << 8;
-                        color |= r;
+                        color = (r*65536) + (r*256) + r;
                         pros::screen::set_pen(color);
                         pros::screen::draw_pixel(x,y);
                         //printf("%x\n", color);
@@ -66,6 +63,11 @@ void updateScreen(void*){
                 stbi_image_free(data);
                 i++;
 
+                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                    //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                }
+
                 end = pros::millis();
 
                 pros::delay(fps - (end-start));
@@ -73,6 +75,7 @@ void updateScreen(void*){
             break;
         case 2:
             while (true){
+                start = pros::millis();
                 if (i == numofimages){
                     i = 0;
                 }
@@ -83,10 +86,7 @@ void updateScreen(void*){
                     for (int x = 0; x < width; x++){
                         r = data[((x) + (y*width))*2];
                         a = data[((x) + (y*width))*2 + 1];
-                        color = 0;
-                        color |= r << 16;
-                        color |= r << 8;
-                        color |= r;
+                        color = (r*65536) + (r*256) + r;
                         pros::screen::set_pen(color);
                         pros::screen::draw_pixel(x,y);
                         //printf("%x\n", color);
@@ -95,10 +95,20 @@ void updateScreen(void*){
                 }
                 stbi_image_free(data);
                 i++;
+
+                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                    //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                }
+
+                end = pros::millis();
+
+                pros::delay(fps - (end-start));
             }
             break;
         case 3:
             while (true){
+                start = pros::millis();
                 if (i == numofimages){
                     i = 0;
                 }
@@ -110,10 +120,7 @@ void updateScreen(void*){
                         r = data[((x) + (y*width))*3];
                         g = data[((x) + (y*width))*3 + 1];
                         b = data[((x) + (y*width))*3 + 2];
-                        color = 0;
-                        color |= r << 16;
-                        color |= g << 8;
-                        color |= b;
+                        color = (r*65536) + (g*256) + b;
                         pros::screen::set_pen(color);
                         pros::screen::draw_pixel(x,y);
                         //printf("%d\n", color);
@@ -122,10 +129,20 @@ void updateScreen(void*){
                 }
                 stbi_image_free(data);
                 i++;
+
+                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                    //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                }
+
+                end = pros::millis();
+
+                pros::delay(fps - (end-start));
             }
             break;
         case 4:
             while (true){
+                start = pros::millis();
                 if (i == numofimages){
                     i = 0;
                 }
@@ -138,10 +155,7 @@ void updateScreen(void*){
                         g = data[((x) + (y*width))*4 + 1];
                         b = data[((x) + (y*width))*4 + 2];
                         a = data[((x) + (y*width))*4 + 3];
-                        color = 0;
-                        color |= r << 16;
-                        color |= g << 8;
-                        color |= b;
+                        color = (r*65536) + (g*256) + b;
                         pros::screen::set_pen(color);
                         pros::screen::draw_pixel(x,y);
                         //printf("%x\n", color);
@@ -155,6 +169,10 @@ void updateScreen(void*){
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
                 }
+
+                end = pros::millis();
+
+                pros::delay(fps - (end-start));
             }
             break;
     }
