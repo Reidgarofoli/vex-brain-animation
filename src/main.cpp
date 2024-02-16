@@ -65,7 +65,14 @@ void updateScreen(void*){
 
                 for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                    if (buttons[i].identifier == "upArrow"){
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                    }
                 }
 
                 end = pros::millis();
@@ -98,7 +105,14 @@ void updateScreen(void*){
 
                 for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                    if (buttons[i].identifier == "upArrow"){
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                    }
                 }
 
                 end = pros::millis();
@@ -132,7 +146,14 @@ void updateScreen(void*){
 
                 for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                    if (buttons[i].identifier == "upArrow"){
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                    }
                 }
 
                 end = pros::millis();
@@ -167,7 +188,14 @@ void updateScreen(void*){
 
                 for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
                     //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::set_pen(pros::c::COLOR_LIGHT_GRAY);
                     pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                    if (buttons[i].identifier == "upArrow"){
+                        pros::screen::fill_rect((buttons[i].width / 2) + (buttons[i].width / 4) + buttons[i].x, 50 + buttons[i].y, buttons[i].width - 50 + buttons[i].x, buttons[i].height - 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].x + 10, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                        pros::screen::draw_line(buttons[i].width - 10 + buttons[i].x, 50 + buttons[i].y, buttons[i].width / 2 + buttons[i].x, buttons[i].width / 2 + buttons[i].y);
+                    }
                 }
 
                 end = pros::millis();
