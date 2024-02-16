@@ -7,6 +7,19 @@
 #include <cstdio>
 #include <iostream>
 
+struct button {
+    uint16_t x;
+    uint16_t y;
+    uint16_t width;
+    uint16_t height;
+    char[16] identifier;
+}
+
+button buttons[2] = {
+    (button){0, 0, 60, 120, "button1"},
+    (button){0, 120, 60, 120, "button2"},
+};
+
 void updateScreen(void*){
 	int width,height,n;
 
@@ -137,6 +150,11 @@ void updateScreen(void*){
                 }
                 stbi_image_free(data);
                 i++;
+
+                for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+                    //(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1)
+                    pros::screen::fill_rect(buttons[i].x, buttons[i].y, buttons[i].x + buttons[i].width, buttons[i].y + buttons[i].height);
+                }
             }
             break;
     }
@@ -197,6 +215,18 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+void changePixel() {
+    pros::screen_touch_status_s_t status = pros::screen::touch_status();
+    for (int i = 0; i < sizeof(buttons) / sizeof(button); i++) {
+        if (status.x > buttons[i].x && status.y > buttons[i].y && status.x < buttons[i].x + buttons[i].width && status.y < buttons[i].y + buttons[i].height){
+            printf("button pressed");
+        }
+    }
+}
+
 void opcontrol() {
-	
+    pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
+    while(1) {
+        pros::delay(20);
+    }
 }
